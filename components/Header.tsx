@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useLocalization } from '../context/LocalizationContext';
 import { Languages, FileSignature } from 'lucide-react';
@@ -25,12 +24,6 @@ export const Header: React.FC<HeaderProps> = ({ navigate }) => {
               className="text-gray-600 hover:text-brand-dark-blue font-medium transition-colors"
             >
               {t('dashboard')}
-            </button>
-            <button
-              onClick={() => navigate('creator')}
-              className="px-4 py-2 bg-brand-dark-blue text-white rounded-md hover:bg-blue-900 transition-colors font-semibold"
-            >
-              {t('newContract')}
             </button>
             <div className="flex items-center space-x-2 border-l pl-4">
               <Languages className="h-5 w-5 text-gray-500" />

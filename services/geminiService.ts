@@ -1,29 +1,8 @@
+
 import { GoogleGenAI, Type } from "@google/genai";
 import type { FormData, Language, Template, GeneratedContract } from '../types';
 
-// Read API key and endpoint from Vite environment variables exposed to the browser.
-// Vite only exposes variables that start with VITE_. Add `VITE_GOOGLE_GENAI_API_KEY` to your `.env`.
-const VITE = (import.meta as any).env as Record<string, any>;
-const API_KEY: string | undefined = VITE.VITE_GOOGLE_GENAI_API_KEY || VITE.VITE_GOOGLE_GENAI_APIKEY || VITE.GOOGLE_GENAI_API_KEY;
-const API_ENDPOINT: string | undefined = VITE.VITE_GOOGLE_GENAI_API_ENDPOINT || VITE.VITE_GOOGLE_GENAI_APIENDPOINT || VITE.GOOGLE_GENAI_API_ENDPOINT;
-
-let ai: any;
-if (!API_KEY) {
-    // Avoid constructing the library without an API key — the library will throw an error in the browser.
-    console.error("Missing VITE_GOOGLE_GENAI_API_KEY. Set it in your .env file and restart the dev server. For security, prefer calling the API from a backend.");
-    // Provide a stub that surfaces a clearer error when used.
-    ai = {
-        models: {
-            generateContent: async () => {
-                throw new Error('GoogleGenAI: no API key configured. Set VITE_GOOGLE_GENAI_API_KEY in .env or use a server-side proxy.');
-            }
-        }
-    };
-} else {
-    // The GoogleGenAI constructor currently accepts an `apiKey` option. If you need to override endpoint,
-    // check the library docs — passing a non-standard option may cause type errors.
-    ai = new GoogleGenAI({ apiKey: API_KEY });
-}
+const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 const responseSchema = {
     type: Type.OBJECT,
