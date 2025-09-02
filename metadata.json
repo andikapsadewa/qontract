@@ -1,0 +1,5 @@
+{
+  "name": "Qontract",
+  "description": "A web platform for Indonesian MSMEs and freelancers to create work contracts quickly, simply, and professionally without needing legal expertise. Features include contract templates, automatic document generation, PDF export, and e-signatures.",
+  "requestFramePermissions": []
+}
